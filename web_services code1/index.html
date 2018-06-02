@@ -1,0 +1,308 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<!doctype html>
+<html>
+<head>
+
+  <title>Pet Feeder Interactive Webcontrols</title>
+
+  <script>
+
+    var MY_IP = "192.168.1.7"
+  </script>
+  <script src="Scripts/jquery-3.2.0.js"></script>
+  
+  <style type="text/css">
+    
+    #container {
+      /* center the content */
+      margin: 0 auto;	
+      text-align: center;
+    }
+
+    /* This is the background picture for the web page */
+    
+    body {
+      background-image:url("Pictures/PetCare With Title.jpg");
+      background-repeat:no-repeat;
+      background-size:cover;
+    }
+
+    /* Define the box where the laser on and laser off buttons will be placed */
+    
+    div-laser {
+      position: absolute;
+      top: 10%;
+      left: 28%;
+      background-color: LightGray;
+      width: 30%; /* 250px; */
+      height: 5%; /* 22px; */
+      border: 3px solid green;
+      padding: 5px;
+      margin: 5px;
+      }
+
+    /* This is the definition for the laser on button */
+    
+    .div-on {
+      position: absolute;
+      top: 18%;
+      left: 3%;
+      background-color: #ffff66; /* Light yellow */
+      width: 75px;
+      height: 20px;
+      border: 1px solid green;
+      padding: 1px;
+      margin: 1px;
+      }
+
+    /* This is the definition for the laser off button */
+
+    .div-off {
+      position: absolute;
+      top: 18%;
+      right: 3%;
+      background-color: #ffff66; /* Light yellow */
+      width: 75px;
+      height: 20px;
+      border: 1px solid green;
+      padding: 1px;
+      margin: 1px;
+      }
+
+    /* This is the box where the video will be displayed */
+    
+    div-camera {
+      position: absolute;
+      top: 21%;
+      left: 28%;
+      background-color: #ffff66; /* Light yellow */
+      width: 30%; /* 250px; */
+      height: 38%;
+      border: 5px solid green;
+      padding: 5px;
+      margin: 5px;
+      }
+
+    /* This is the box where the pan and tilt buttons will be displayed */
+    
+    div-buttons {
+      position: absolute;
+      top: 33%;
+      left: 62%;
+      background-color: LightGray;
+      width: 20%; /* 155px; */
+      height: 12%; /* 65px; */
+      border: 3px solid green;
+      padding: 5px;
+      margin: 5px;
+      }
+
+    /* This is the pan left button */
+    
+    .div-left {
+      position: absolute;
+      top: 33%;
+      left: 3%;
+      background-color: #ffff66; /* Light yellow */
+      width: 50px;
+      height: 20px;
+      border: 1px solid green;
+      padding: 1px;
+      margin: 1px;
+      }
+
+    /* This is the pan right button */
+    
+    .div-right {
+      position: absolute;
+      top: 33%;
+      right:3%;
+      background-color: #ffff66; /* Light yellow */
+      width: 50px;
+      height: 20px;
+      border: 1px solid green;
+      padding: 1px;
+      margin: 1px;
+      }
+
+    /* This is the tilt up button */
+    
+    .div-up {
+      position: absolute;
+      top: 8%;
+      left: 35%;
+      background-color: #ffff66; /* Light yellow */
+      width: 50px;
+      height: 20px;
+      border: 1px solid green;
+      padding: 1px;
+      margin: 1px;
+      }
+
+    /* This is the tilt down button */
+    
+    .div-down {
+      position: absolute;
+      top: 62%;
+      left: 35%;
+      background-color: #ffff66; /* Light yellow */
+      width: 50px;
+      height: 20px;
+      border: 1px solid green;
+      padding: 1px;
+      margin: 1px;
+      }
+
+    /* This is the box where the pan and tilt buttons will be displayed */
+    
+    div-status {
+      position: absolute;
+      top: 65%;
+      left: 28%;
+      text-align: left;
+      font-size: 14px;
+      background-color: LightGray;
+      width: 30%; /* 250px; */
+      height: 15%; /* 70px; */
+      border: 3px solid green;
+      padding: 5px;
+      margin: 5px;
+      }
+
+    div-line1 {
+      position: absolute;
+      top: 5%;
+      left: 5%;
+      text-align: left;
+      font-size: 14px;
+      background-color: LightGray;
+      width: 95%; /* 225px; */
+      height: 20%; /* 15px; */
+      border: none;
+      padding: 0px;
+      margin: 0px;
+      }
+
+    div-line2 {
+      position: absolute;
+      top: 25%;
+      left: 5%;
+      text-align: left;
+      font-size: 14px;
+      background-color: LightGray;
+      width: 95%; /* 225px; */
+      height: 20%; /* 15px; */
+      border: none;
+      padding: 0px;
+      margin: 0px;
+      }
+
+  </style>
+
+</head>
+
+<body>
+  <div id="container">
+
+    <div-laser>
+      <button class=div-on onclick="servos.move('L', 1)">Laser ON</button>
+      <button class=div-off onclick="servos.move('L', 0)">Laser OFF</button>
+    </div-laser>
+
+    <div-camera>
+      
+      
+      <img width=100% height=100% src="http://192.168.1.7:8081" />
+     
+      
+    </div-camera>
+
+    <div-buttons>
+      <button class=div-left onclick="servos.move('P', 10)">Left</button>
+      <button class=div-right onclick="servos.move('P', -10)">Right</button>
+      <button class=div-up onclick="servos.move('T', -10)">Up</button>
+      <button class=div-down onclick="servos.move('T', 10)">Down</button>
+    </div-buttons>
+
+    <div-status>
+      <div-line1 id=food>
+      </div-line1>
+      <div-line2 id=water>
+      </div-line2>
+    </div-status>
+  </div>
+</body>
+
+<script>
+
+  function nextFoodUpdate() {
+    $.get('http://' + MY_IP + '/GetFoodRemaining.rpy', function(param) {
+      document.getElementById("food").innerHTML =
+         "Food remaining = " + param + "%";
+      setTimeout('nextFoodUpdate()', 10000);
+      });
+    }
+
+  $.get('http://' + MY_IP + '/GetFoodRemaining.rpy', function(param) {
+    document.getElementById("food").innerHTML =
+         "Food remaining = " + param + "%";
+    setTimeout('nextFoodUpdate()', 10000);
+    });
+  
+  function nextWaterUpdate() {
+    $.get('http://' + MY_IP + '/GetWaterRemaining.rpy', function(param) {
+      document.getElementById("water").innerHTML =
+         "Water remaining = " + param + "%";
+      setTimeout('nextWaterUpdate()', 10000);
+      });
+    }
+
+  $.get('http://' + MY_IP + '/GetWaterRemaining.rpy', function(param) {
+    document.getElementById("water").innerHTML =
+         "Water remaining = " + param + "%";
+    setTimeout('nextWaterUpdate()', 10000);
+    });
+  
+  var servos;
+  $( document ).ready(function() {
+    servos = moveServos();
+  });
+
+  function moveServos() {
+    // Store some settings, adjust to suit
+    var panPos = 70, 
+        tiltPos = 90, 
+	tiltMax = 140, 
+	tiltMin = 45, 
+	panMax = 170, 
+	panMin = 20;
+    return {
+      move:function(servo, adjustment) {
+        var value;
+	if(servo == 'P') {
+          if(!((panPos >= panMax && adjustment > 0) ||
+               (panPos <= panMin && adjustment < 0))) {
+	    // Still within allowed range, "schedule" the movement
+	    panPos += adjustment;
+	  }
+	  value = panPos + 'P';
+	}
+	else if(servo == 'T') {
+	  if(!((tiltPos >= tiltMax && adjustment > 0) ||
+               (tiltPos <= tiltMin && adjustment < 0))) {
+	    // Still within allowed range, "schedule" the movement
+	    tiltPos += adjustment;
+	  }
+	  value = tiltPos + 'T';
+	}
+	else if(servo == 'L') {
+	  value = adjustment + 'L';
+	}
+     // Use AJAX to actually move the servos
+     $.get('http://' + MY_IP + '/servos.rpy?value=' + value);
+     },
+  }
+}
+
+</script>
+</html>
